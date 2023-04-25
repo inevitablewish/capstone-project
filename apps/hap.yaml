@@ -1,0 +1,22 @@
+---
+kind: HorizontalPodAutoscaler
+apiVersion: autoscaling/v2
+metadata:
+  name: springboot-app-hpa
+  namespace: default
+spec:
+  
+  minReplicas: 2
+  maxReplicas: 10
+  scaleTargetRef:
+    name:  springboot-app
+    kind: Deployment
+    apiVersion: apps/v1    
+
+  metrics:
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 50
