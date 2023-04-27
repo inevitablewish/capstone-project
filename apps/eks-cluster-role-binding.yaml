@@ -6,8 +6,8 @@ metadata:
   namespace: default
 subjects:
 - kind: User
-  name: eks-user
-  apiGroup: rbac.authorization.k8s.io
+  name: user1
+  apiGroup: ""
 roleRef:
   kind: ClusterRole
   name: eks-cluster-role
