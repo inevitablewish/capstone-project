@@ -109,6 +109,12 @@
        state: present
        force: yes
 
+   - name: etcdctl Install
+     apt:
+       name: etcd-client
+       state: present
+       force: yes
+
    - name: Start the cluster
      shell: kubeadm init --pod-network-cidr=192.168.0.0/16 --cri-socket /run/cri-dockerd.sock --control-plane-endpoint "{{ master_node }}":6443 --upload-certs >> cluster.txt
      register: result
@@ -143,7 +149,7 @@
 
    - name: Install Pod network
      become_user: ubuntu
-     shell: kubectl apply -f https://raw.githubusercontent.com/inevitablewish/simply-learn-capstone-project/main/flannel.yaml>> pod_setup.txt # replaced flannel to Calico
+     shell: kubectl apply -f https://raw.githubusercontent.com/inevitablewish/capstone-project/main/k8s%20Network/flannel.yaml>> pod_setup.txt # replaced flannel to Calico
      args:
        chdir: $HOME
        creates: pod_setup.txt

@@ -85,6 +85,21 @@ resource "null_resource" "copy_ansible_playbooks" {
       }
     
   }
+
+  provisioner "file" {
+      source = "../${path.root}/apps"
+      destination = "/home/ubuntu/app/"
+
+      connection {
+        type        = "ssh"
+        host        = aws_instance.masters[0].public_ip
+        user        = var.ssh_user
+        private_key = tls_private_key.ssh.private_key_pem
+        insecure    = true
+        agent         = false
+      }
+    
+  }
 }
 
 resource "null_resource" "run_ansible" {
