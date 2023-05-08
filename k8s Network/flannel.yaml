@@ -97,7 +97,7 @@ data:
     }
   net-conf.json: |
     {
-      "Network": "192.168.0.0/24",
+      "Network": "192.168.0.0/16",
       "Backend": {
         "Type": "vxlan"
       }
